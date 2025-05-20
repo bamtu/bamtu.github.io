@@ -1,9 +1,11 @@
+remote_theme: Drassil/git-wiki-theme@master
 # (string) Title of your wiki
-title: 
-baseurl: ""
-url: "https://localhost:4000"
+title: "git-wiki-skeleton"
+# (string) if you've installed your wiki in subfolder, you must change this configuration
+# with your folder name, otherwise leave it empty
+baseurl: "/git-wiki-skeleton"
 # (string) Description of your wiki
-description: 
+description:
 # (boolean) disable edit functionalities (edit/delete/add pages)
 disable_edit: false
 # (boolean) Enable/disable wiki page list in sidebar
@@ -19,7 +21,7 @@ show_wiki_posts_limit: 10
 # from jekyll (read jekyll doc)
 paginate: 5
 paginate_path: "/assets/blog/page:num"
-permalink: "/assets/blog/posts/:year/:month/:day/:title:output_ext"
+permalink: /assets/blog/posts/:year/:month/:day/:title:output_ext
 # (boolean) Enable/disable download buttons in sidebar
 show_downloads: true
 # (string) Specify branch rendered by gitpages allowing wiki tool buttons to work
@@ -92,7 +94,7 @@ defaults:
       layout: "git-wiki-post"
  -
     scope:
-      path: assets/blog
+      path: "assets/blog"
     values:
       layout: "git-wiki-blog"
 sass:
@@ -114,6 +116,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-titles-from-headings
   - jemoji
+  - jekyll-gitlab-metadata
 
 
 #
@@ -144,6 +147,6 @@ inc_before_tools :
 inc_after_tools : 
 
 inc_before_page_list :
-inc_after_page_list :
+inc_after_page_list : sidebar.html
 inc_before_post_list :
 inc_after_post_list :
