@@ -18,9 +18,9 @@ theme: null
 skin: "/assets/css/skins/default.css"
 locale: en-US
 title: "Bamtu의 개발 일지"
-description: "Github: github.com/bamtu"
+description: ""
 baseurl: # the subpath of your site, e.g. "/blog"
-url: "https://bamtu.github.io[href=https://bamtu.github.io]"
+url: "https://bamtu.github.io"
 logo: # path of site logo, e.g. "/images/logo.png"
 date_format: "%B %-d, %Y"
 read_time: # reading time estimates, e.g. true
@@ -45,7 +45,7 @@ liquid:
   error_mode: strict
 
 # Build settings
-permalink: /:categories/:title/
+permalink: /:year/:month/:day/:title/
 markdown: kramdown
 feed:
   path: atom.xml
@@ -83,6 +83,12 @@ plugins:
 
 
 # Front Matter Defaults
+collections:
+  posts:
+    output: true
+    permalink: /:path/
+
+    
 defaults:
   # Posts defaults
   - scope:
@@ -91,7 +97,6 @@ defaults:
     values:
       layout: post
       share: true
-
 # Site Author
 author:
   name:
