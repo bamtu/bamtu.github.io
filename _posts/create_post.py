@@ -33,4 +33,3 @@ if __name__ == "__main__":
     title = input("포스트 제목: ")
     category = input("카테고리: ")
     create_post(title, category)
-    input("\n엔터를 누르면 창을 닫습니다.")
