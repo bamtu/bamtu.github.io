@@ -18,9 +18,9 @@ theme: null
 skin: "/assets/css/skins/default.css"
 locale: en-US
 title: "Bamtu의 개발 일지"
-description: "It really is the best."
+description: "Github: github.com/bamtu"
 baseurl: # the subpath of your site, e.g. "/blog"
-url: "https://bamtu.github.io"
+url: "https://bamtu.github.io[href=https://bamtu.github.io]"
 logo: # path of site logo, e.g. "/images/logo.png"
 date_format: "%B %-d, %Y"
 read_time: # reading time estimates, e.g. true
