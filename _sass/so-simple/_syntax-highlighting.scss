@@ -18,7 +18,7 @@ figure.highlight {
   position: relative;
   margin-bottom: 1em;
   font-family: $monospace-font-family;
-  line-height: 1.8;
+  line-height: 1.2;  // 폰트의 줄 높이 설정
 
   > pre,
   pre.highlight {
@@ -29,7 +29,7 @@ figure.highlight {
 
 .highlight table {
   margin-bottom: 0;
-  font-size: 1rem;
+  font-size: 1rem;  
   border: 0;
 
   td {
