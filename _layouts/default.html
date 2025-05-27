@@ -7,6 +7,31 @@
 -->
 <html lang="{{ page.lang | default: site.lang | default: 'en-US' }}" class="no-js">
   {% include head.html %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup/dist/magnific-popup.css">
+  <script>
+  $(document).ready(function() {
+    $('img').each(function() {
+      // src 가져오기
+      var imgSrc = $(this).attr('src');
+      var altText = $(this).attr('alt') || '';
+
+      // 중복 방지: 이미 링크로 감싸져 있지 않은 경우만
+      if (!$(this).parent().is('a')) {
+        $(this).wrap(`<a href="${imgSrc}" class="image-popup" title="${altText}"></a>`);
+      }
+    });
+
+    // Magnific Popup 초기화
+    $('.image-popup').magnificPopup({
+      type: 'image',
+      closeOnContentClick: true,
+      mainClass: 'mfp-img-mobile',
+      image: {
+        verticalFit: true
+      }
+    });
+  });
+  </script>
 
   <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %} {% if page.entries_layout == 'grid' %}page--wide{% endif %} {{ page.title | slugify }}">
     {% include skip-links.html %}
@@ -17,6 +42,14 @@
 
     {% include footer.html %}
     {% include scripts.html %}
+    <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/jquery.magnific-popup.js"></script>
+    <script src="/assets/js/magnific-popup-setting.js"></script>
+        <!-- body 끝부분에 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+
   </body>
+
 
 </html>
