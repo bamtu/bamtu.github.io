@@ -47,9 +47,6 @@ liquid:
 # Build settings
 permalink: /:year/:month/:day/:title/
 markdown: kramdown
-kramdown:
-  parse_block_html: true  # HTML 태그 안의 Markdown을 렌더링
-  syntax_highlighter: rouge
 feed:
   path: atom.xml
 
