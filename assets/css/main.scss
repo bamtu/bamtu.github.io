@@ -10,6 +10,7 @@ sitemap: false
 
 @import "so-simple";
 
-a > img {  
-  float: none !important;  
-}  
+.page-content a[style*="float"],
+.page-content a[style*="float"] > img {
+  float: none !important;
+}
