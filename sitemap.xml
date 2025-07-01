@@ -7,8 +7,8 @@ layout: null
   <url>
     <loc>{{ site.url }}{{ post.url }}</loc>
     <lastmod>{{ post.last_modified_at | default: post.date | date_to_xmlschema }}</lastmod>
-    <changefreq>{{ post.sitemap.changefreq | default: site.sitemap.changefreq }}</changefreq>
-    <priority>{{ post.sitemap.priority | default: site.sitemap.priority }}</priority>
+    <changefreq>{{ post.sitemap.changefreq | default: "weekly" }}</changefreq>
+    <priority>{{ post.sitemap.priority | default: 0.5 }}</priority>
   </url>
   {% endfor %}
 </urlset>
