@@ -88,6 +88,11 @@ collections:
     output: true
     permalink: /:path/
 
+defaults:
+  - scope:
+      path: "sitemap.xml"
+    values:
+      layout: null
     
 defaults:
   # Posts defaults
