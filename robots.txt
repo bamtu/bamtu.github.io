@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 sitemap: https://bamtu.github.io/sitemap.xml
+Sitemap: https://bamtu.github.io/sitemap.xml
