@@ -84,11 +84,11 @@ plugins:
   - jekyll-include-cache
 
 
-# Front Matter Defaults
-collections:
-  posts:
-    output: true
-    permalink: /:path/
+# # Front Matter Defaults
+# collections:
+#   posts:
+#     output: true
+#     permalink: /:path/
     
 defaults:
   # Posts defaults
