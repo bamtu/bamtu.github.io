@@ -45,7 +45,9 @@ liquid:
   error_mode: strict
 
 # Build settings
-permalink: /:year/:month/:day/:title/
+# permalink: /:year/:month/:day/:title/
+permalink: /:year/:month/:day/
+# permalink: /p/:title:output_ext/
 markdown: kramdown
 feed:
   path: atom.xml
@@ -82,11 +84,11 @@ plugins:
   - jekyll-include-cache
 
 
-# Front Matter Defaults
-collections:
-  posts:
-    output: true
-    permalink: /:path/
+# # Front Matter Defaults
+# collections:
+#   posts:
+#     output: true
+#     permalink: /:path/
     
 defaults:
   # Posts defaults
