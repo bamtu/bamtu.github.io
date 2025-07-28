@@ -17,7 +17,12 @@ Chain은 LangChain에서 제공되는 python 클래스인데, 복잡한 파이�
 ```python
 from langchain.agents import AgentExecutor
 
+...
+
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+
+...
+
 ```
 
 Chain대신에 AgentExecutor를 사용하면 여러 이점이 있다. Chain은 실행 순서가 LCEL등으로 서술하여 코드 내에 미리 정의되어있지만 AgentExecutor는 Chain의 일종으로, 결정 기반(action-driven) 동적인 루프 실행 흐름을 가진 체인이다. 
