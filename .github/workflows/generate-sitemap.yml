@@ -24,7 +24,7 @@ jobs:
         node-version: '20'
     
     - name: Wait for GitHub Pages to update
-      run: sleep 120
+      run: sleep 60
     
     - name: Generate sitemap
       run: npx sitemap-generator-cli https://bamtu.github.io
@@ -52,3 +52,6 @@ jobs:
         sleep 10
         git commit --allow-empty -m "Force Pages rebuild"
         git push
+
+
+      
