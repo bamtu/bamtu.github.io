@@ -35,14 +35,10 @@ jobs:
         git add sitemap.xml
         if git diff --staged --quiet; then
           echo "No changes to sitemap.xml"
+          # sitemap이 변경되지 않았어도 Pages 빌드 트리거
+          git commit --allow-empty -m "Trigger Pages rebuild"
+          git push
         else
-          git commit -m "Auto-update sitemap.xml [skip ci]"
+          git commit -m "Auto-update sitemap.xml"
           git push
         fi
-    # GitHub Pages 재배포 강제 트리거
-    - name: Trigger GitHub Pages build
-      run: |
-        curl -X POST \
-          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/${{ github.repository }}/pages/builds
