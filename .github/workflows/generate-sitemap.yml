@@ -10,6 +10,7 @@ jobs:
     
     permissions:
       contents: write
+      pages: write
     
     steps:
     - name: Checkout code
@@ -35,10 +36,19 @@ jobs:
         git add sitemap.xml
         if git diff --staged --quiet; then
           echo "No changes to sitemap.xml"
-          # sitemap이 변경되지 않았어도 Pages 빌드 트리거
-          git commit --allow-empty -m "Trigger Pages rebuild"
-          git push
         else
           git commit -m "Auto-update sitemap.xml"
           git push
         fi
+    
+    - name: Trigger Pages deployment with gh CLI
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # 최신 커밋으로 Pages 빌드 요청
+        gh api repos/${{ github.repository }}/pages/builds --method POST || true
+        
+        # 또는 워크플로우 디스패치로 다른 방법 시도
+        sleep 10
+        git commit --allow-empty -m "Force Pages rebuild"
+        git push
