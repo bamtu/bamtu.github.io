@@ -1,8 +1,5 @@
 {
   "scripts": {
-    "generate-sitemap": "sitemap-generator-cli https://bamtu.github.io"
-  },
-  "devDependencies": {
-    "sitemap-generator-cli": "^7.7.0"
+    "generate-sitemap": "npx sitemap-generator-cli https://bamtu.github.io"
   }
 }

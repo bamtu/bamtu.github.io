@@ -22,14 +22,11 @@ jobs:
       with:
         node-version: '20'
     
-    - name: Install dependencies
-      run: npm install
-    
     - name: Wait for GitHub Pages to update
-      run: sleep 60  # GitHub Pages 배포 완료까지 대기
+      run: sleep 60
     
     - name: Generate sitemap
-      run: npm run generate-sitemap
+      run: npx sitemap-generator-cli https://bamtu.github.io
     
     - name: Commit and push sitemap
       run: |
