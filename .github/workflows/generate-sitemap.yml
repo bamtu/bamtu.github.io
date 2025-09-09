@@ -30,15 +30,52 @@ jobs:
       - name: Build Jekyll site
         run: bundle exec jekyll build
 
+      - name: Debug - Check _site contents
+        run: |
+          echo "=== _site directory contents ==="
+          ls -la _site/
+          echo "=== Looking for sitemap files ==="
+          find _site/ -name "*sitemap*" -type f
+          echo "=== Current directory contents ==="
+          ls -la
+
       - name: Generate the sitemap
         uses: cicirello/generate-sitemap@v1
         with:
           base-url-path: https://bamtu.github.io
           path-to-root: _site
-          include-html: false
+          include-html: true
 
-      - name: Copy sitemap to root
-        run: cp _site/sitemap.xml sitemap.xml
+      - name: Debug - Check sitemap after generation
+        run: |
+          echo "=== Current directory after sitemap generation ==="
+          ls -la
+          if [ -f "sitemap.xml" ]; then
+            echo "=== Root sitemap.xml content ==="
+            cat sitemap.xml | head -20
+          fi
+          if [ -f "_site/sitemap.xml" ]; then
+            echo "=== _site/sitemap.xml content ==="
+            cat _site/sitemap.xml | head -20
+          fi
+
+      - name: Copy sitemap to root (if exists in _site)
+        run: |
+          if [ -f "_site/sitemap.xml" ]; then
+            cp _site/sitemap.xml sitemap.xml
+            echo "Copied sitemap from _site to root"
+          else
+            echo "No sitemap found in _site directory"
+          fi
+
+      - name: Final sitemap check
+        run: |
+          if [ -f "sitemap.xml" ]; then
+            echo "=== Final sitemap.xml content ==="
+            cat sitemap.xml
+          else
+            echo "No sitemap.xml found in root"
+          fi
 
       - name: Commit and push sitemap
         run: |
@@ -48,6 +85,6 @@ jobs:
             git add sitemap.xml
             git commit -m "Automated sitemap update"
             git push
+          else
+            echo "No changes to sitemap.xml"
           fi
-
-# hi
