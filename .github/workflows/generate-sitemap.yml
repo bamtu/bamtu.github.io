@@ -39,3 +39,10 @@ jobs:
           git commit -m "Auto-update sitemap.xml [skip ci]"
           git push
         fi
+    # GitHub Pages 재배포 강제 트리거
+    - name: Trigger GitHub Pages rebuild
+      run: |
+        echo "Triggering GitHub Pages rebuild..."
+        # 빈 커밋으로 Pages 재배포 트리거
+        git commit --allow-empty -m "Trigger Pages rebuild"
+        git push
