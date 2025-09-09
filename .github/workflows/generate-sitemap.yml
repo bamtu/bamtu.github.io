@@ -32,13 +32,18 @@ jobs:
     - name: Build Jekyll site
       run: bundle exec jekyll build
 
+    - name: Copy _site contents to temp directory
+      run: |
+        mkdir -p temp_site
+        cp -r _site/* temp_site/
+
     - name: Generate the sitemap
-      id: sitemap
       uses: cicirello/generate-sitemap@v1
       with:
         base-url-path: https://bamtu.github.io
-        path-to-root: _site
-        
+        path-to-root: temp_site
+        include-html: false
+
 
     - name: Output stats
       run: |
