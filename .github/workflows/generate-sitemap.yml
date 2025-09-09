@@ -37,7 +37,7 @@ jobs:
       uses: cicirello/generate-sitemap@v1
       with:
         base-url-path: https://bamtu.github.io
-        path-to-root: ./_site
+        path-to-root: ${{ github.workspace }}/_site
         include-html: true
 
     - name: Output stats
