@@ -21,7 +21,9 @@ jobs:
         uses: cicirello/generate-sitemap@v1
         with:
           base-url-path: https://bamtu.github.io/
-
+          path-to-root: _site  # Jekyll 빌드 결과물 폴더 지정
+          include-html: true
+          
       - name: Commit and push sitemap
         run: |
           if [[ `git status --porcelain sitemap.xml` ]]; then
