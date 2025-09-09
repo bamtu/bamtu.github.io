@@ -15,7 +15,17 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
 
+      - name: Build Jekyll site
+        run: |
+          bundle install
+          bundle exec jekyll build
+          
       - name: Generate the sitemap
         id: sitemap
         uses: cicirello/generate-sitemap@v1
@@ -23,7 +33,7 @@ jobs:
           base-url-path: https://bamtu.github.io/
           path-to-root: _site  # Jekyll 빌드 결과물 폴더 지정
           include-html: true
-          
+
       - name: Commit and push sitemap
         run: |
           if [[ `git status --porcelain sitemap.xml` ]]; then
