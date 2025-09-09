@@ -1,31 +1,38 @@
-name: Deploy Sitemap
+name: Generate Sitemap
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * 0'
 
 jobs:
-  deploy:
+  generate-sitemap:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run sitemap generator
-        run: node generate-sitemap.js
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./sitemap.xml
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    
+    - name: Install dependencies
+      run: npm install
+    
+    - name: Generate sitemap
+      run: node generate-sitemap.js
+    
+    - name: Commit and push sitemap
+      run: |
+        git config --local user.email "59360@naver.com"
+        git config --local user.name "GitHub Action"
+        git add sitemap.xml
+        if git diff --staged --quiet; then
+          echo "No changes to sitemap.xml"
+        else
+          git commit -m "Update sitemap.xml"
+          git push
+        fi
