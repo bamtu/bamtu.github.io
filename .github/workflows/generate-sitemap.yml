@@ -1,64 +1,31 @@
-name: Generate xml sitemap
+name: Deploy Sitemap
 
 on:
   push:
-    branches: [ main ]
-
-permissions:
-  contents: write
+    branches:
+      - main
 
 jobs:
-  sitemap_job:
+  deploy:
     runs-on: ubuntu-latest
-    name: Generate a sitemap
 
     steps:
-    - name: Checkout the repo
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0 
-        
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.0'
-        bundler-cache: false
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Install gems (ignore lockfile)
-      run: |
-        rm -f Gemfile.lock
-        bundle install
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
-    - name: Build Jekyll site
-      run: bundle exec jekyll build
+      - name: Install dependencies
+        run: npm install
 
-    - name: Copy _site contents to temp directory
-      run: |
-        mkdir -p temp_site
-        cp -r _site/* temp_site/
+      - name: Run sitemap generator
+        run: node generate-sitemap.js
 
-    - name: Generate the sitemap
-      uses: cicirello/generate-sitemap@v1
-      with:
-        base-url-path: https://bamtu.github.io
-        path-to-root: temp_site
-        include-html: false
-
-
-    - name: Output stats
-      run: |
-        echo "sitemap-path = ${{ steps.sitemap.outputs.sitemap-path }}"
-        echo "url-count = ${{ steps.sitemap.outputs.url-count }}"
-        echo "excluded-count = ${{ steps.sitemap.outputs.excluded-count }}"
-
-    - name: Commit and push sitemap
-      run: |
-        if [[ `git status --porcelain sitemap.xml` ]]; then
-          git config --global user.name 'github-actions'
-          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add sitemap.xml
-          git commit -m "Automated sitemap update"
-          git push
-        else
-          echo "No changes to sitemap.xml"
-        fi
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./sitemap.xml
