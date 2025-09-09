@@ -4,6 +4,9 @@ on:
   push:
     branches: [ main ]
 
+permissions:
+  contents: write
+
 jobs:
   sitemap_job:
     runs-on: ubuntu-latest
@@ -15,10 +18,19 @@ jobs:
       with:
         fetch-depth: 0 
         
-    - name: Build Jekyll site
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+        bundler-cache: false
+
+    - name: Install gems (ignore lockfile)
       run: |
+        rm -f Gemfile.lock
         bundle install
-        bundle exec jekyll build
+
+    - name: Build Jekyll site
+      run: bundle exec jekyll build
 
     - name: Generate the sitemap
       id: sitemap
@@ -26,10 +38,22 @@ jobs:
       with:
         base-url-path: https://bamtu.github.io
         path-to-root: _site
-        include-html: false
+        include-html: true
 
     - name: Output stats
       run: |
         echo "sitemap-path = ${{ steps.sitemap.outputs.sitemap-path }}"
         echo "url-count = ${{ steps.sitemap.outputs.url-count }}"
         echo "excluded-count = ${{ steps.sitemap.outputs.excluded-count }}"
+
+    - name: Commit and push sitemap
+      run: |
+        if [[ `git status --porcelain sitemap.xml` ]]; then
+          git config --global user.name 'github-actions'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sitemap.xml
+          git commit -m "Automated sitemap update"
+          git push
+        else
+          echo "No changes to sitemap.xml"
+        fi
