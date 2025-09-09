@@ -35,7 +35,7 @@ jobs:
         with:
           base-url-path: https://bamtu.github.io
           path-to-root: _site
-          include-html: true
+          include-html: false
 
       - name: Copy sitemap to root
         run: cp _site/sitemap.xml sitemap.xml
