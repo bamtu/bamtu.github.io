@@ -1,23 +1,8 @@
 {
-  "name": "bamtu.github.io",
-  "version": "1.0.0",
-  "description": "",
-  "main": "generate-sitemap.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "generate-sitemap": "sitemap-generator-cli https://bamtu.github.io"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bamtu/bamtu.github.io.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/bamtu/bamtu.github.io/issues"
-  },
-  "homepage": "https://github.com/bamtu/bamtu.github.io#readme",
-  "dependencies": {
-    "sitemap-generator": "^7.5.2"
+  "devDependencies": {
+    "sitemap-generator-cli": "^7.7.0"
   }
 }

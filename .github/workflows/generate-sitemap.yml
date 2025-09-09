@@ -3,14 +3,11 @@ name: Generate Sitemap
 on:
   push:
     branches: [ main ]
-  schedule:
-    - cron: '0 0 * * 0'
 
 jobs:
   generate-sitemap:
     runs-on: ubuntu-latest
     
-    # 권한 추가
     permissions:
       contents: write
     
@@ -18,28 +15,31 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        # 토큰 명시적 지정
         token: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20'
+        cache: 'npm'
     
     - name: Install dependencies
       run: npm install
     
+    - name: Wait for GitHub Pages to update
+      run: sleep 60  # GitHub Pages 배포 완료까지 대기
+    
     - name: Generate sitemap
-      run: node generate-sitemap.js
+      run: npm run generate-sitemap
     
     - name: Commit and push sitemap
       run: |
         git config --local user.email "59360@naver.com"
-        git config --local user.name "bamtu"  # GitHub 사용자명으로 변경
+        git config --local user.name "bamtu"
         git add sitemap.xml
         if git diff --staged --quiet; then
           echo "No changes to sitemap.xml"
         else
-          git commit -m "Update sitemap.xml"
+          git commit -m "Auto-update sitemap.xml [skip ci]"
           git push
         fi
