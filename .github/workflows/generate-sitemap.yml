@@ -6,7 +6,7 @@ on:
 
 permissions:
   contents: write
-  
+
 jobs:
   sitemap_job:
     runs-on: ubuntu-latest
@@ -18,7 +18,7 @@ jobs:
 
       - name: Generate the sitemap
         id: sitemap
-        uses: cicirello/generate-sitemap@v2
+        uses: cicirello/generate-sitemap@v1
         with:
           base-url-path: https://bamtu.github.io/
 
