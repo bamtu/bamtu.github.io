@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "프로젝트 1 - RAG활용 음악 태그 편집 에이전트 (7) - AgentExecutor"
+title:  "AgentExecutor 설명 - RAG활용 음악 태그 편집 에이전트 (7)"
 date:   2025-07-28 22:28:47 +0900
 categories: AIagent
 ---
