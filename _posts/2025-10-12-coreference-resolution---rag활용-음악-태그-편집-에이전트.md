@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Coreference resolution - RAG활용 음악 태그 편집 에이전트"
+title:  "Coreference resolution - RAG활용 음악 태그 편집 에이전트(8)"
 date:   2025-10-12 19:41:59 +0900
 categories: AIagent
 ---
