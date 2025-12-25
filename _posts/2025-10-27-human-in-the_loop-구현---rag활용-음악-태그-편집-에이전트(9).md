@@ -10,7 +10,6 @@ categories: AIagent
 ---
 
 HITL 구현을 위해 LangChain으로 구현했던 음악 태그 편집 에이전트를 LangGraph의 Graph형식으로 노드와 엣지, state를 구현했다. 
-
 ![](../_assets/20251027181024.png)
 
 가장 먼저 사용자의 입력 프롬프트를 받으면, retriever 노드에서 VectorStore에 접근해 입력 프롬프트에서 원하는 여러 개의 음원파일의 이름(ex: C:music_files/별 보러 갈래.mp3)을 가져온다. 다음으로 update_tool 노드에서는 Agent가 여러 개의 tool 중에 어떤 정보를 업데이트하는 funciton을 고를지 선택하고, 아래 화면처럼 Approve / Reject를 선택하게 만든다. _interrupt 옵션은 tool_executor노드를 실행하기 전에 interrupt를 준다는 의미이다. 

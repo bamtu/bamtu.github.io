@@ -8,6 +8,7 @@ categories: AIagent TeamProject
 
 ### Background
 ---
+
 팀프로젝트 기간동안 우리 팀은 의료 진단 분야에서 Multi-agent를 이용해서 최적의 결과를 생성하려고 노력했다. 그래서 논문을 서치하게 되었는데, 서치한 논문 제목은 Enhancing diagnostic capability with multi-agents conversational large language models, 이 논문에서는 다중 에이전트 대화(Multi-Agent Conversation) 프레임워크를 제시한다. 실제 임상 환경에서 여러 전문의가 모여 복잡한 환자 사례를 논의하는 다학제팀(Multi-Disciplinary Team, MDT)토론을 모방하여 설계되었다고 한다. 
 
 논문의 핵심 목표는 단일 언어 모델이 놓칠 수 있는 다양한 관점을 통합하여 진단의 정확성을 높이는 것이다. 이 논문에서는 Langchain이 아니라 AutoGen으로 개발되었다. Udemy같은 강의들도 보니까 Multi Agent를 구현할 때는 AutoGen을 많이 사용하는 경향이 보였다. 하지만 우리 팀은 LangChain, LangGraph를 이용해서 구현하였다.
@@ -61,8 +62,7 @@ GPT-4를 기본 모델(Base Model)로 사용하는 4명의 의사 에이전트�
 
 다음은 구현을 위해 멀티 에이전트를 어떻게 구성해야할지 알아내야했다. 다음의 그림은 논문의 multi-agent conversation (MAC) 프레임워크 구성 그림이다. 
 
-
-![](../_assets/20251221231828.png)
+![](../assets/20251225190815.png)
 
 먼저 맨 왼쪽에 Admin Agent가 있다. Admin Agent는 대화의 시작점이자, 다른 에이전트에게 환자의 정보(기본 정보, 임상 증상, 병력, 검사 결과 등)와 해결해야 할 과제(예: "가장 가능성 있는 진단명과 추가 검사를 제안하시오")를 전달한다. 
 
