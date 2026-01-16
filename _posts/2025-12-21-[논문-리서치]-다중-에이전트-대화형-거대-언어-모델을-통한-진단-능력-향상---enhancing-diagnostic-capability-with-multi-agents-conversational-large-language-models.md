@@ -17,6 +17,7 @@ categories: AIagent TeamProject
 ### 논문의 요약 및 결론
 ---
 논문에서는 에이전트의 구성 방식을 두가지로 나누었는데, 표로 나타내면 다음과 같다.
+
 | 구분 (Category) | 표준 구성 (Standard Configuration) - 기본 방식 | 전문 분야 할당 실험 (Specialty Assignment Experiment) |
 |---|---|---|
 | 에이전트의 정체성 | 모두 동일한 일반 의사 (Generalist) 에이전트 | 사례에 따라 동적으로 역할이 부여된 전문의 (Specialist) 에이전트 |
