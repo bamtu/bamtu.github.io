@@ -46,8 +46,7 @@ liquid:
   error_mode: strict
 
 # Build settings
-# permalink: /:year/:month/:day/:title/
-permalink: /:year/:month/:day/
+permalink: /:year/:month/:day/:title/
 # permalink: /p/:title:output_ext/
 markdown: kramdown
 feed:
