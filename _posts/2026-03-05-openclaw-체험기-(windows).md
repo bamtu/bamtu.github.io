@@ -118,3 +118,6 @@ gpt-5-mini 기준으로 2번 간단한 일을 요청하고 Usage를 확인했더
 ---
 간단하게 OpenClaw를 사용해서 Agent에게 웹 브라우징을 시켜보았다. 
 
+### 참조
+---
+https://docs.openclaw.ai/
